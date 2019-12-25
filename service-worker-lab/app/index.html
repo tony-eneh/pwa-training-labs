@@ -15,7 +15,8 @@ limitations under the License.
 -->
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <!-- Set character encoding -->
     <meta charset="utf-8">
     <!-- Set the viewport -->
@@ -24,16 +25,21 @@ limitations under the License.
     <title>Service Worker Example</title>
     <!-- Add stylesheet -->
     <link href="styles/index.css" rel="stylesheet">
-  </head>
-  <body>
+</head>
+
+<body>
     <h1>Service Worker Example</h1>
     <a href="other.html">Other page</a>
     <br><br>
     <a href="below/another.html">Another page</a>
     <script>
-
-    // Script to register the service worker goes here
-
+        // Script to register the service worker goes here
+        if (navigator.serviceWorker) {
+            navigator.serviceWorker.register('service-worker.js')
+                .then((registration) => console.log `Service Worker successfully registered ${registration}`)
+                .catch((error) => console.error `error registering service worker: ${error}`);
+        }
     </script>
-  </body>
+</body>
+
 </html>
