@@ -43,9 +43,10 @@ self.addEventListener('fetch', event => {
                     });
                 });
 
-        }).catch(error => {
+        })
+        .catch(error => {
 
-            // TODO 6 - Respond with custom offline page
+            return caches.match('/pages/offline.html');
 
         })
     );
