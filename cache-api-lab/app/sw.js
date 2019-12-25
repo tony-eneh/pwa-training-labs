@@ -33,7 +33,10 @@ self.addEventListener('fetch', event => {
             console.log('Network request for ', event.request.url);
             return fetch(event.request)
                 .then(response => {
-                    // TODO 5 - Respond with custom 404 page
+                    //Check resource was found
+                    if (response.status === 404) {
+                        return caches.match('/pages/404.html');
+                    }
                     return caches.open(staticCacheName).then(cache => {
                         cache.put(event.request.url, response.clone());
                         return response;
